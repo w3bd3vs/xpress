@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Shipments</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <h2><i class="fas fa-shipping-fast"></i> ShipTrack</h2>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="/shipment/dashboard"
+            ><i class="fas fa-home"></i> Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="/shipment/new"
+            ><i class="fas fa-plus-circle"></i> Create Shipment</a
+          >
+        </li>
+        <li>
+          <a href="/shipment/history/all" class="active"
+            ><i class="fas fa-list"></i> All Shipments</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-search"></i> Track Shipment</a>
+        </li>
+        <li>
+          <a href="/shipment/logout"><i class="fas fa-cog"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="header">
+        <h1><i class="fas fa-list-alt"></i> All Shipments</h1>
+        <div class="user-info">
+          <div class="user-avatar">A</div>
+          <span><strong>Admin</strong></span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="card-header">
+          <h2><i class="fas fa-box"></i> Shipment List</h2>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <select id="statusFilter" class="filter-select">
+              <option value="">All Statuses</option>
+              <option value="In Transit">In Transit</option>
+              <option value="On Hold">On Hold</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Processed">Processed</option>
+              <option value="Customs Clearance">Customs Clearance</option>
+            </select>
+            <select id="serviceFilter" class="filter-select">
+              <option value="">All Services</option>
+              <option value="Air Freight">Air Freight</option>
+              <option value="Sea Freight">Sea Freight</option>
+              <option value="Road Freight">Road Freight</option>
+              <option value="Express Delivery">Express Delivery</option>
+            </select>
+            <a href="/shipment/new" class="btn btn-primary">
+              <i class="fas fa-plus"></i> New Shipment
+            </a>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by tracking number, receiver name, destination..."
+          />
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-pill">
+            <i class="fas fa-boxes"></i>
+            <span>Total: <strong><%= shipments.length %></strong></span>
+          </div>
+          <div class="stat-pill">
+            <i class="fas fa-truck"></i>
+            <span
+              >In Transit:
+              <strong
+                ><%= shipments.filter(s => s.status === 'In Transit').length
+                %></strong
+              ></span
+            >
+          </div>
+          <div class="stat-pill">
+            <i class="fas fa-pause-circle"></i>
+            <span
+              >On Hold:
+              <strong
+                ><%= shipments.filter(s => s.status === 'On Hold').length
+                %></strong
+              ></span
+            >
+          </div>
+          <div class="stat-pill">
+            <i class="fas fa-check-circle"></i>
+            <span
+              >Delivered:
+              <strong
+                ><%= shipments.filter(s => s.status === 'Delivered').length
+                %></strong
+              ></span
+            >
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table id="shipmentsTable">
+            <thead>
+              <tr>
+                <th><i class="fas fa-barcode"></i> Tracking #</th>
+                <th><i class="fas fa-user"></i> Receiver</th>
+                <th><i class="fas fa-map-marker-alt"></i> Destination</th>
+                <th><i class="fas fa-plane"></i> Service</th>
+                <th><i class="fas fa-weight"></i> Weight</th>
+                <th><i class="fas fa-calendar"></i> Departure</th>
+                <th><i class="fas fa-info-circle"></i> Status</th>
+                <th><i class="fas fa-cogs"></i> Actions</th>
+              </tr>
+            </thead>
+            <tbody id="shipmentsBody">
+              <% if (shipments.length === 0) { %>
+              <tr>
+                <td colspan="8" class="loading">
+                  <i class="fas fa-inbox"></i> No shipments found.
+                </td>
+              </tr>
+              <% } else { %> <% shipments.forEach(s => { %>
+              <tr>
+                <td>
+                  <a href="/track/<%= s.trackingNumber %>" class="tracking-link"
+                    ><%= s.trackingNumber %></a
+                  >
+                </td>
+                <td><%= s.receiver?.name || 'N/A' %></td>
+                <td><%= s.shipment?.destination || 'N/A' %></td>
+                <td><%= s.shipment?.serviceType || 'N/A' %></td>
+                <td><%= s.shipment?.totalWeight || '—' %> kg</td>
+                <td>
+                  <%= s.shipment?.departureDate ? new
+                  Date(s.shipment.departureDate).toLocaleDateString() : '—' %>
+                </td>
+                <td>
+                  <% if (s.status === 'Delivered') { %>
+                  <span class="status delivered"
+                    ><i class="fas fa-check-circle"></i> Delivered</span
+                  >
+                  <% } else if (s.status === 'In Transit') { %>
+                  <span class="status in-transit"
+                    ><i class="fas fa-truck"></i> In Transit</span
+                  >
+                  <% } else if (s.status === 'On Hold') { %>
+                  <span class="status on-hold"
+                    ><i class="fas fa-pause-circle"></i> On Hold</span
+                  >
+                  <% } else { %>
+                  <span class="status processed"
+                    ><i class="fas fa-cogs"></i> <%= s.status || 'Processed'
+                    %></span
+                  >
+                  <% } %>
+                </td>
+                <td>
+                  <a
+                    href="/shipment/<%= s._id %>/edit"
+                    class="btn btn-sm btn-secondary"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                  <a
+                    href="/shipment/<%= s._id %>/update"
+                    class="btn btn-sm btn-info"
+                    ><i class="fas fa-sync-alt"></i
+                  ></a>
+                  <a
+                    href="/shipment/<%= s._id %>/delete"
+                    class="btn btn-sm btn-danger"
+                    onclick="return confirm('Are you sure you want to delete this shipment?');"
+                    ><i class="fas fa-trash"></i
+                  ></a>
+                </td>
+              </tr>
+              <% }) %> <% } %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination" id="pagination" style="display: none">
+          <button class="btn btn-secondary btn-sm" id="prevBtn" disabled>
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <span id="pageInfo">Page 1 of 1</span>
+          <button class="btn btn-secondary btn-sm" id="nextBtn" disabled>
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <h3><i class="fas fa-exclamation-triangle"></i> Confirm Delete</h3>
+        <p>
+          Are you sure you want to delete this shipment? This action cannot be
+          undone.
+        </p>
+        <p>
+          <strong
+            >Tracking Number: <span id="deleteTrackingNumber"></span
+          ></strong>
+        </p>
+        <div class="modal-buttons">
+          <button class="btn btn-secondary" onclick="closeDeleteModal()">
+            Cancel
+          </button>
+          <button class="btn btn-danger" onclick="confirmDelete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shipment Details Modal -->
+    <div id="detailsModal" class="modal">
+      <div class="modal-content" style="max-width: 800px">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+          "
+        >
+          <h3><i class="fas fa-info-circle"></i> Shipment Details</h3>
+          <button
+            class="btn btn-secondary btn-sm"
+            onclick="closeDetailsModal()"
+          >
+            <i class="fas fa-times"></i> Close
+          </button>
+        </div>
+        <div id="shipmentDetailsContent"></div>
+      </div>
+    </div>
+
+    <script src="/js/all-shipments.js"></script>
+  </body>
+</html>

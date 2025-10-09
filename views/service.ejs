@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Xpress</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .top-bar {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1a3a5c;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: #ff5722;
+            font-size: 1.2em;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contact-info a {
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #ff5722;
+        }
+
+        .contact-info i {
+            color: #ff5722;
+        }
+
+        .quote-btn {
+            padding: 12px 30px;
+            border: 2px solid #ff5722;
+            color: #ff5722;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quote-btn:hover {
+            background: #ff5722;
+            color: white;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 20px 0;
+            display: block;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ff5722;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header-content h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-header-content p {
+            font-size: 1.3em;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 0;
+        }
+
+        .breadcrumb .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #ff5722;
+        }
+
+        .breadcrumb span {
+            color: #ff5722;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-intro h2 {
+            font-size: 2.5em;
+            color: #1a3a5c;
+            margin-bottom: 20px;
+        }
+
+        .section-intro p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+        }
+
+        .service-icon {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ff5722;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8em;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            font-size: 1.6em;
+            color: #1a3a5c;
+            margin-bottom: 15px;
+        }
+
+        .service-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-features li i {
+            color: #ff5722;
+            font-size: 0.8em;
+        }
+
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+
+        .learn-more:hover {
+            gap: 15px;
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box i {
+            font-size: 3em;
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h4 {
+            font-size: 1.3em;
+            color: #1a3a5c;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3a5c;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff5722;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            color: white;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-links .facebook { background: #3b5998; }
+        .social-links .twitter { background: #1da1f2; }
+        .social-links .google { background: #db4437; }
+        .social-links .youtube { background: #ff0000; }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .page-header-content h1 {
+                font-size: 2em;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <a href="/" class="logo">
+                <i class="fas fa-plane"></i>
+                Xpress
+            </a>
+            <div class="contact-info">
+                <a href="mailto:info@xpresslogistic.com">
+                    <i class="fas fa-envelope"></i>
+                    info@xpresslogistic.com
+                </a>
+                <a href="tel:1601-609-6780">
+                    <i class="fas fa-phone"></i>
+                    (464)-212-4707
+                </a>
+                <a href="#" class="quote-btn">Get Free Quote</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/service" class="active">Services</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <h1>Our Services</h1>
+            <p>Comprehensive logistics solutions for your business</p>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <!-- <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <span>Services</span>
+        </div>
+    </div> -->
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>What We Offer</h2>
+                <p>We provide end-to-end logistics solutions tailored to meet your specific needs. From air freight to ocean shipping, we've got you covered.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Air Freight -->
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800');">
+                        <div class="service-icon">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Air Freight</h3>
+                        <p>Fast and reliable air cargo services for time-sensitive shipments across the globe.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Express delivery options</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time tracking</li>
+                            <li><i class="fas fa-check-circle"></i> Door-to-door service</li>
+                            <li><i class="fas fa-check-circle"></i> Customs clearance</li>
+                        </ul>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Sea Freight -->
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1494412685616-a5d310fbb07d?w=800');">
+                        <div class="service-icon">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Ocean Freight</h3>
+                        <p>Cost-effective sea freight solutions for large volume shipments worldwide.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> FCL & LCL options</li>
+                            <li><i class="fas fa-check-circle"></i> Port-to-port delivery</li>
+                            <li><i class="fas fa-check-circle"></i> Cargo insurance</li>
+                            <li><i class="fas fa-check-circle"></i> Competitive rates</li>
+                        </ul>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Road Freight -->
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800');">
+                        <div class="service-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Road Freight</h3>
+                        <p>Efficient ground transportation for domestic and cross-border deliveries.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Flexible scheduling</li>
+                            <li><i class="fas fa-check-circle"></i> Full truckload (FTL)</li>
+                            <li><i class="fas fa-check-circle"></i> Less than truckload (LTL)</li>
+                            <li><i class="fas fa-check-circle"></i> Temperature controlled</li>
+                        </ul>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Warehousing -->
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1553413077-190dd305871c?w=800');">
+                        <div class="service-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Warehousing</h3>
+                        <p>Secure storage facilities with advanced inventory management systems.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Climate controlled</li>
+                            <li><i class="fas fa-check-circle"></i> 24/7 security</li>
+                            <li><i class="fas fa-check-circle"></i> Inventory management</li>
+                            <li><i class="fas fa-check-circle"></i> Order fulfillment</li>
+                        </ul>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Express Delivery -->
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800');">
+                        <div class="service-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Express Delivery</h3>
+                        <p>Same-day and next-day delivery services for urgent shipments.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Same-day delivery</li>
+                            <li><i class="fas fa-check-circle"></i> Priority handling</li>
+                            <li><i class="fas fa-check-circle"></i> Proof of delivery</li>
+                            <li><i class="fas fa-check-circle"></i> SMS notifications</li>
+                        </ul>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Customs Brokerage -->
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800');">
+                        <div class="service-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Customs Brokerage</h3>
+                        <p>Expert customs clearance services to ensure smooth international shipping.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Documentation support</li>
+                            <li><i class="fas fa-check-circle"></i> Duty calculation</li>
+                            <li><i class="fas fa-check-circle"></i> Compliance management</li>
+                            <li><i class="fas fa-check-circle"></i> Fast clearance</li>
+                        </ul>
+                        <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Why Choose Xpress?</h2>
+                <p>We are committed to providing exceptional logistics services that exceed your expectations.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-clock"></i>
+                    <h4>On-Time Delivery</h4>
+                    <p>98% on-time delivery rate with guaranteed timelines</p>
+                </div>
+
+                <div class="feature-box">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Safe & Secure</h4>
+                    <p>Advanced security measures for your cargo</p>
+                </div>
+
+                <div class="feature-box">
+                    <i class="fas fa-headset"></i>
+                    <h4>24/7 Support</h4>
+                    <p>Round-the-clock customer service team</p>
+                </div>
+
+                <div class="feature-box">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>Competitive Rates</h4>
+                    <p>Best pricing without compromising quality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Ship with Us?</h2>
+            <p>Get started today and experience the difference</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn cta-btn-primary">
+                    <i class="fas fa-paper-plane"></i> Get a Quote
+                </a>
+                <a href="/contact" class="cta-btn cta-btn-secondary">
+                    <i class="fas fa-phone"></i> Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="logo">
+                    <i class="fas fa-plane"></i>
+                    Xpress
+                </div>
+                <p style="margin-top: 20px; color: #ccc;">Your trusted logistics partner for global shipping solutions.</p>
+                <div class="social-links">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Air Freight</a></li>
+                    <li><a href="#">Ocean Freight</a></li>
+                    <li><a href="#">Road Freight</a></li>
+                    <li><a href="#">Warehousing</a></li>
+                    <li><a href="#">Express Delivery</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@xpresslogistic.com</li>
+                    <li><i class="fas fa-phone"></i> (464)-212-4707</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ikeja, Lagos, Nigeria</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Xpress. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

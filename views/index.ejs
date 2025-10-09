@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xpress - Global Logistics Service</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Header */
+      .top-bar {
+        background: white;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .top-bar .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #1a3a5c;
+      }
+
+      .logo i {
+        color: #ff5722;
+        font-size: 1.2em;
+      }
+
+      .contact-info {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .contact-info a {
+        color: #666;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+
+      .contact-info a:hover {
+        color: #ff5722;
+      }
+
+      .contact-info i {
+        color: #ff5722;
+      }
+
+      .quote-btn {
+        padding: 12px 30px;
+        border: 2px solid #ff5722;
+        color: #ff5722;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .quote-btn:hover {
+        background: #ff5722;
+        color: white;
+      }
+
+      /* Navigation */
+      nav {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 20px 0;
+        display: block;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #ff5722;
+      }
+
+      .search-icon {
+        width: 40px;
+        height: 40px;
+        background: #ff5722;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .search-icon:hover {
+        transform: scale(1.1);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600")
+            center/cover;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 0 20px;
+        animation: fadeInUp 1s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.3em;
+        margin-bottom: 40px;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 18px 40px;
+        background: #ff5722;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .hero-btn:hover {
+        background: #e64a19;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(255, 87, 34, 0.3);
+      }
+
+      /* Track Your Order Section */
+      .track-section {
+        background: white;
+        padding: 80px 20px;
+      }
+
+      .track-section .container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .track-section h2 {
+        font-size: 2.5em;
+        color: #1a3a5c;
+        margin-bottom: 20px;
+      }
+
+      .track-section p {
+        color: #666;
+        font-size: 1.1em;
+        margin-bottom: 40px;
+      }
+
+      .tracking-form {
+        display: flex;
+        gap: 15px;
+        max-width: 700px;
+        margin: 0 auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 50px;
+        overflow: hidden;
+        background: white;
+      }
+
+      .tracking-form input {
+        flex: 1;
+        padding: 20px 30px;
+        border: none;
+        font-size: 1.1em;
+        outline: none;
+      }
+
+      .tracking-form button {
+        padding: 20px 40px;
+        background: #ff5722;
+        color: white;
+        border: none;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tracking-form button:hover {
+        background: #e64a19;
+      }
+
+      /* Features Section */
+      .features {
+        background: #f8f9fa;
+        padding: 80px 20px;
+      }
+
+      .features .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: 40px 30px;
+        background: white;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: #fff5f2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: #ff5722;
+        font-size: 2em;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5em;
+        color: #1a3a5c;
+        margin-bottom: 15px;
+      }
+
+      .feature-card p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 80px 20px;
+        background: white;
+      }
+
+      .services .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5em;
+        color: #1a3a5c;
+        margin-bottom: 60px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .service-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .service-content {
+        padding: 30px;
+      }
+
+      .service-content h3 {
+        font-size: 1.6em;
+        color: #1a3a5c;
+        margin-bottom: 15px;
+      }
+
+      .service-content p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      /* Footer */
+      footer {
+        background: #1a3a5c;
+        color: white;
+        padding: 60px 20px 30px;
+      }
+
+      footer .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-section h3 {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section a:hover {
+        color: #ff5722;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s;
+      }
+
+      .social-links a:hover {
+        transform: scale(1.1);
+      }
+
+      .social-links .facebook {
+        background: #3b5998;
+      }
+      .social-links .twitter {
+        background: #1da1f2;
+      }
+      .social-links .google {
+        background: #db4437;
+      }
+      .social-links .youtube {
+        background: #ff0000;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ccc;
+      }
+
+      /* Mobile Menu */
+      .mobile-toggle {
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .top-bar .container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .contact-info {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        nav ul {
+          display: none;
+        }
+
+        .mobile-toggle {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.2em;
+        }
+
+        .hero p {
+          font-size: 1.1em;
+        }
+
+        .tracking-form {
+          flex-direction: column;
+          border-radius: 10px;
+        }
+
+        .tracking-form button {
+          justify-content: center;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        /* ===== Mobile Navbar Toggle Fix ===== */
+
+        nav .mobile-toggle {
+          display: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: #333;
+        }
+
+        @media (max-width: 768px) {
+          nav .mobile-toggle {
+            display: inline-block;
+          }
+
+          nav ul {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+          }
+
+          nav ul.active {
+            display: flex;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-plane"></i>
+          Xpress
+        </div>
+        <div class="contact-info">
+          <a href="mailto:info@docmed.com">
+            <i class="fas fa-envelope"></i>
+            info@xpresslogistic.com
+          </a>
+          <a href="tel:1601-609-6780">
+            <i class="fas fa-phone"></i>
+            (464)-212-4707
+          </a>
+          <a href="#" class="quote-btn">Get Free Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <span class="mobile-toggle"><i class="fas fa-bars"></i></span>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/service">Services</a></li>
+          <li><a href="/about">About</a></li>
+
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p>For Personal & Business</p>
+        <h1>Global Logistic Service For Business</h1>
+        <a href="/service" class="hero-btn">Our Services</a>
+      </div>
+    </section>
+
+    <!-- Track Your Order Section -->
+    <section class="track-section">
+      <div class="container">
+        <h2>Track Your Order</h2>
+        <p>
+          Enter your tracking number to get real-time updates on your shipment
+        </p>
+        <form
+          class="tracking-form"
+          onsubmit="trackOrder(event)"
+          action="/track"
+          method="GET"
+        >
+          <input
+            type="text"
+            name="tracking"
+            id="trackingNumber"
+            placeholder="Enter your tracking number (e.g., TRK-2025-891456-NG)"
+            required
+          />
+          <button type="submit">
+            <i class="fas fa-search"></i>
+            Track Now
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-plane"></i>
+            </div>
+            <h3>Transportation</h3>
+            <p>
+              Fast and reliable transportation services with real-time tracking
+              for all your shipping needs across the globe.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3>Live Monitoring</h3>
+            <p>
+              Track your shipments in real-time with our advanced monitoring
+              system and get instant updates on delivery status.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3>Worldwide Service</h3>
+            <p>
+              We provide comprehensive logistics solutions worldwide with our
+              extensive network of partners and carriers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <h2 class="section-title">Services We Offer</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <img
+              src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800"
+              alt="Land Transport"
+            />
+            <div class="service-content">
+              <h3>Land Transport</h3>
+              <p>
+                Efficient road freight services with dedicated trucks and
+                experienced drivers for timely deliveries.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <img
+              src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800"
+              alt="Air Freight"
+            />
+            <div class="service-content">
+              <h3>Air Freight</h3>
+              <p>
+                Fast air cargo solutions for urgent shipments with competitive
+                rates and reliable service.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <img
+              src="https://images.unsplash.com/photo-1494412685616-a5d310fbb07d?w=800"
+              alt="Ocean Freight"
+            />
+            <div class="service-content">
+              <h3>Ocean Freight</h3>
+              <p>
+                Cost-effective sea freight services for large volume shipments
+                with full container or LCL options.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-section">
+            <div class="logo">
+              <i class="fas fa-plane"></i>
+              Xpress
+            </div>
+            <div class="social-links">
+              <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="google"
+                ><i class="fab fa-google-plus-g"></i
+              ></a>
+              <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#">Air Transportation</a></li>
+              <li><a href="#">Ocean Freight</a></li>
+              <li><a href="#">Ocean Cargo</a></li>
+              <li><a href="#">Logistics</a></li>
+              <li><a href="#">Warehouse Moving</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Why Us?</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Industries</h3>
+            <ul>
+              <li><a href="#">Chemicals</a></li>
+              <li><a href="#">Automotive</a></li>
+              <li><a href="#">Consumer Goods</a></li>
+              <li><a href="#">Life Science</a></li>
+              <li><a href="#">Foreign Trade</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Xpress. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function trackOrder(event) {
+        event.preventDefault();
+        const trackingNumber = document
+          .getElementById("trackingNumber")
+          .value.trim();
+
+        if (trackingNumber) {
+          // Redirect to tracking page with the tracking number
+          window.location.href = `/track/${encodeURIComponent(trackingNumber)}`;
+        }
+      }
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.querySelector(".mobile-toggle");
+        const menu = document.querySelector("nav ul");
+
+        if (toggle && menu) {
+          toggle.addEventListener("click", function () {
+            menu.classList.toggle("active");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

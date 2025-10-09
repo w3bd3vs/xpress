@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Xpress</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Header */
+      .top-bar {
+        background: white;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .top-bar .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #1a3a5c;
+        text-decoration: none;
+      }
+
+      .logo i {
+        color: #ff5722;
+        font-size: 1.2em;
+      }
+
+      .contact-info {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .contact-info a {
+        color: #666;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+
+      .contact-info a:hover {
+        color: #ff5722;
+      }
+
+      .contact-info i {
+        color: #ff5722;
+      }
+
+      .quote-btn {
+        padding: 12px 30px;
+        border: 2px solid #ff5722;
+        color: #ff5722;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .quote-btn:hover {
+        background: #ff5722;
+        color: white;
+      }
+
+      /* Navigation */
+      nav {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 20px 0;
+        display: block;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover,
+      nav a.active {
+        color: #ff5722;
+      }
+
+      /* Page Header */
+      .page-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600")
+            center/cover;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+
+      .page-header-content h1 {
+        font-size: 3em;
+        margin-bottom: 15px;
+        animation: fadeInUp 1s ease;
+      }
+
+      .page-header-content p {
+        font-size: 1.3em;
+        animation: fadeInUp 1s ease 0.2s;
+        animation-fill-mode: both;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .breadcrumb {
+        background: #f8f9fa;
+        padding: 15px 0;
+      }
+
+      .breadcrumb .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .breadcrumb a {
+        color: #666;
+        text-decoration: none;
+      }
+
+      .breadcrumb a:hover {
+        color: #ff5722;
+      }
+
+      .breadcrumb span {
+        color: #ff5722;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Story Section */
+      .story-section {
+        padding: 80px 20px;
+        background: white;
+      }
+
+      .story-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .story-text h2 {
+        font-size: 2.5em;
+        color: #1a3a5c;
+        margin-bottom: 25px;
+      }
+
+      .story-text p {
+        color: #666;
+        font-size: 1.1em;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .story-image {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .story-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      .story-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Stats Section */
+      .stats-section {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        text-align: center;
+      }
+
+      .stat-box {
+        padding: 30px;
+      }
+
+      .stat-box i {
+        font-size: 3em;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      .stat-number {
+        font-size: 3em;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        font-size: 1.2em;
+        opacity: 0.9;
+      }
+
+      /* Values Section */
+      .values-section {
+        padding: 80px 20px;
+        background: #f8f9fa;
+      }
+
+      .section-intro {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 60px;
+      }
+
+      .section-intro h2 {
+        font-size: 2.5em;
+        color: #1a3a5c;
+        margin-bottom: 20px;
+      }
+
+      .section-intro p {
+        color: #666;
+        font-size: 1.1em;
+        line-height: 1.8;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+      }
+
+      .value-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .value-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: white;
+        font-size: 2em;
+      }
+
+      .value-card h3 {
+        font-size: 1.5em;
+        color: #1a3a5c;
+        margin-bottom: 15px;
+      }
+
+      .value-card p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      /* Team Section */
+      .team-section {
+        padding: 80px 20px;
+        background: white;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+      }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .team-image {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .team-social {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        transition: bottom 0.3s;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .team-card:hover .team-social {
+        bottom: 0;
+      }
+
+      .team-social a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: transform 0.3s;
+      }
+
+      .team-social a:hover {
+        transform: scale(1.1);
+      }
+
+      .team-social .linkedin {
+        background: #0077b5;
+      }
+      .team-social .twitter {
+        background: #1da1f2;
+      }
+      .team-social .envelope {
+        background: #ff5722;
+      }
+
+      .team-info {
+        padding: 25px;
+      }
+
+      .team-info h3 {
+        font-size: 1.4em;
+        color: #1a3a5c;
+        margin-bottom: 8px;
+      }
+
+      .team-info p {
+        color: #ff5722;
+        font-weight: 600;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 20px;
+        text-align: center;
+        color: white;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+
+      .cta-section p {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+        opacity: 0.9;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-btn {
+        padding: 18px 40px;
+        border-radius: 50px;
+        font-size: 1.1em;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .cta-btn-primary {
+        background: white;
+        color: #667eea;
+      }
+
+      .cta-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-btn-secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .cta-btn-secondary:hover {
+        background: white;
+        color: #667eea;
+      }
+
+      /* Footer */
+      footer {
+        background: #1a3a5c;
+        color: white;
+        padding: 60px 20px 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+        max-width: 1200px;
+        margin: 0 auto 40px;
+      }
+
+      .footer-section h3 {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 12px;
+      }
+
+      .footer-section a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section a:hover {
+        color: #ff5722;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s;
+        color: white;
+      }
+
+      .social-links a:hover {
+        transform: scale(1.1);
+      }
+
+      .social-links .facebook {
+        background: #3b5998;
+      }
+      .social-links .twitter {
+        background: #1da1f2;
+      }
+      .social-links .google {
+        background: #db4437;
+      }
+      .social-links .youtube {
+        background: #ff0000;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ccc;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 768px) {
+        .top-bar .container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .contact-info {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        nav ul {
+          display: none;
+        }
+
+        .page-header-content h1 {
+          font-size: 2em;
+        }
+
+        .story-content {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <a href="/" class="logo">
+          <i class="fas fa-plane"></i>
+          Xpress
+        </a>
+        <div class="contact-info">
+          <a href="mailto:info@xpresslogistic.com">
+            <i class="fas fa-envelope"></i>
+            info@xpresslogistic.com
+          </a>
+          <a href="tel:1601-609-6780">
+            <i class="fas fa-phone"></i>
+            (464)-212-4707
+          </a>
+          <a href="#" class="quote-btn">Get Free Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/service">Services</a></li>
+          <li><a href="/about" class="active">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="page-header-content">
+        <h1>About Xpress</h1>
+        <p>Your trusted partner in global logistics solutions</p>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <!-- <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <span>About</span>
+        </div>
+    </div> -->
+
+    <!-- Story Section -->
+    <section class="story-section">
+      <div class="container">
+        <div class="story-content">
+          <div class="story-text">
+            <h2>Our Story</h2>
+            <p>
+              Founded in 2010, Xpress has grown from a small local courier
+              service to a global logistics powerhouse. Our journey began with a
+              simple mission: to make shipping easier, faster, and more reliable
+              for businesses of all sizes.
+            </p>
+            <p>
+              Today, we operate in over 50 countries, handling millions of
+              shipments annually. Our success is built on innovation,
+              dedication, and an unwavering commitment to customer satisfaction.
+            </p>
+            <p>
+              We combine cutting-edge technology with personalized service to
+              deliver solutions that help our clients thrive in an increasingly
+              connected world.
+            </p>
+          </div>
+          <div class="story-image">
+            <img
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800"
+              alt="Our Team"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-box">
+            <i class="fas fa-globe"></i>
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Countries Served</div>
+          </div>
+          <div class="stat-box">
+            <i class="fas fa-box"></i>
+            <div class="stat-number">2M+</div>
+            <div class="stat-label">Shipments Delivered</div>
+          </div>
+          <div class="stat-box">
+            <i class="fas fa-users"></i>
+            <div class="stat-number">5000+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div class="stat-box">
+            <i class="fas fa-award"></i>
+            <div class="stat-number">98%</div>
+            <div class="stat-label">On-Time Delivery</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Our Core Values</h2>
+          <p>
+            These principles guide everything we do and define who we are as a
+            company.
+          </p>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Innovation</h3>
+            <p>
+              We continuously invest in technology and processes to stay ahead
+              of industry trends and provide cutting-edge solutions.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3>Integrity</h3>
+            <p>
+              We conduct our business with honesty, transparency, and
+              accountability in every interaction and transaction.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3>Customer Focus</h3>
+            <p>
+              Our clients are at the heart of everything we do. We go above and
+              beyond to exceed their expectations.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3>Excellence</h3>
+            <p>
+              We strive for excellence in every aspect of our service, from the
+              smallest package to the largest shipment.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Sustainability</h3>
+            <p>
+              We're committed to reducing our environmental impact through
+              eco-friendly practices and green logistics solutions.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <h3>Teamwork</h3>
+            <p>
+              We believe in the power of collaboration and foster a culture
+              where every team member contributes to our success.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Meet Our Leadership</h2>
+          <p>
+            Experienced professionals dedicated to driving excellence in
+            logistics.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div
+              class="team-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400');
+              "
+            >
+              <div class="team-social">
+                <a href="#" class="linkedin"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="envelope"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3>Michael Chen</h3>
+              <p>Chief Executive Officer</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div
+              class="team-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400');
+              "
+            >
+              <div class="team-social">
+                <a href="#" class="linkedin"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="envelope"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3>Sarah Johnson</h3>
+              <p>Chief Operations Officer</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div
+              class="team-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400');
+              "
+            >
+              <div class="team-social">
+                <a href="#" class="linkedin"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="envelope"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3>David Martinez</h3>
+              <p>Chief Technology Officer</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div
+              class="team-image"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400');
+              "
+            >
+              <div class="team-social">
+                <a href="#" class="linkedin"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="envelope"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <div class="team-info">
+              <h3>Emily Roberts</h3>
+              <p>Chief Customer Officer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Join Our Growing Network</h2>
+        <p>
+          Experience the difference of working with a trusted logistics partner
+        </p>
+        <div class="cta-buttons">
+          <a href="#" class="cta-btn cta-btn-primary">
+            <i class="fas fa-paper-plane"></i> Get Started
+          </a>
+          <a href="/contact" class="cta-btn cta-btn-secondary">
+            <i class="fas fa-phone"></i> Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-section">
+          <div class="logo">
+            <i class="fas fa-plane"></i>
+            Xpress
+          </div>
+          <p style="margin-top: 20px; color: #ccc">
+            Your trusted logistics partner for global shipping solutions.
+          </p>
+          <div class="social-links">
+            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#">Air Freight</a></li>
+            <li><a href="#">Ocean Freight</a></li>
+            <li><a href="#">Road Freight</a></li>
+            <li><a href="#">Warehousing</a></li>
+            <li><a href="#">Express Delivery</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> info@xpresslogistic.com</li>
+            <li><i class="fas fa-phone"></i> (464)-212-4707</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Xpress. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -3,35 +3,34 @@ const router = express.Router();
 const Shipment = require("../models/Shipments");
 const shortid = require("shortid");
 const { requireAuth } = require("../middleware/auth");
-const {
-  verifyDatePassword,
-  getTodayDateString,
-} = require("../middleware/auth");
+const User = require("../models/user");
 
-// Login page
+// Handle login form submission
+// GET login page
 router.get("/login", (req, res) => {
   res.render("admin/login", { error: null });
 });
 
-// Handle login form submission
-router.post("/login", (req, res) => {
- const { date } = req.body;
+// POST login
+router.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
 
-if (verifyDatePassword(date)) {
-    req.session.authenticated = true;
+    if (!user || !(await user.validatePassword(password))) {
+      return res
+        .status(401)
+        .render("admin/login", { error: "Invalid credentials." });
+    }
+
+    req.session.userId = user._id.toString();
+    req.session.username = user.username;
     res.redirect("/shipment/dashboard");
-  } else {
-    res.render("admin/login", { error: "Incorrect date. Access denied." });
+  } catch (err) {
+    console.error("Login error:", err);
+    res.status(500).render("admin/login", { error: "Server error." });
   }
 });
-
-// Protected dashboard
-// router.get("/dashboard", (req, res) => {
-//   if (!req.session.authenticated) {
-//     return res.redirect("/shipment/login");
-//   }
-//   res.render("admin/dashboard", { today: getTodayDateString() });
-// });
 
 // Logout
 router.get("/logout", (req, res) => {
@@ -58,7 +57,6 @@ router.get("/update", requireAuth, (req, res) => {
   res.render("admin/update");
 });
 
-// Handle form submission
 // router.post("/", async (req, res) => {
 //   try {
 //     const trackingNumber = `TRK-${Date.now()}-${Math.floor(

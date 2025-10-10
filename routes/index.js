@@ -6,8 +6,8 @@ const Shipment = require("../models/Shipments");
 router.get("/", function (req, res, next) {
   res.render("index");
 });
-router.get("/", function (req, res, next) {
-  res.render("/about");
+router.get("/about", function (req, res, next) {
+  res.render("about");
 });
 
 router.get("/history", async (req, res, next) => {

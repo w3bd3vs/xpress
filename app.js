@@ -17,22 +17,24 @@ const app = express();
 
 
 const session = require('express-session');
-const { checkIPWhitelist, requireAuth } = require('./middleware/auth');
+// const { checkIPWhitelist, requireAuth } = require('./middleware/auth');
 
 // Session configuration
-app.use(session({
-  secret: 'supersecretkey123', // change this to something unique
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // true only if using HTTPS
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "fallbacksecret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, // true only if using HTTPS
+  })
+);
 
 // Parse form data
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
 
 // IP whitelist middleware – applies to ALL routes
-app.use(checkIPWhitelist);
+// app.use(checkIPWhitelist);
 
 
 
@@ -40,11 +42,11 @@ app.use(checkIPWhitelist);
 /**
  * CONFIG - update MONGO_URI if needed
  */
-const MONGO_URI =
-  process.env.MONGO_URI || "mongodb://127.0.0.1:27017/shipment_dashboard";
+const MONGODB_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/shipment_dashboard";
 mongoose.set("strictQuery", false);
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/shipmentdb")
+  .connect(MONGODB_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 app.set("view engine", "ejs");

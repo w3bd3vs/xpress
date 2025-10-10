@@ -40,9 +40,9 @@ app.use(
 
 
 /**
- * CONFIG - update MONGO_URI if needed
+ * CONFIG - update MONGODB_URI if needed
  */
-const MONGODB_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/shipment_dashboard";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/shipment_dashboard";
 mongoose.set("strictQuery", false);
 
 mongoose

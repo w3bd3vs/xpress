@@ -33,9 +33,9 @@ router.get("/service", function (req, res, next) {
 });
 
 
-router.post("/track", async (req, res) => {
+router.get("/track", async (req, res) => {
   try {
-    const trackingNumber = req.body.trackingNumber?.trim();
+    const trackingNumber = req.query.tracking?.trim();
     if (!trackingNumber) {
       return res.render("index", { error: "Please enter a tracking number." });
     }
@@ -45,26 +45,6 @@ router.post("/track", async (req, res) => {
       return res.render("index", {
         error: "Invalid tracking number. Please try again.",
       });
-    }
-
-    // Redirect to tracking page if valid
-    res.redirect(`/track/${trackingNumber}`);
-  } catch (error) {
-    console.error(error);
-    res.render("index", { error: "Something went wrong, please try again." });
-  }
-});
-
-router.get("/track/:trackingNumber", async (req, res) => {
-  try {
-    const shipment = await Shipment.findOne({
-      trackingNumber: req.params.trackingNumber,
-    });
-
-    if (!shipment) {
-      return res
-        .status(404)
-        .render("index", { error: "Tracking number not found." });
     }
 
     res.render("track", { shipment });

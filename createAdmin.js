@@ -10,8 +10,8 @@ const MONGODB_URI =
     await mongoose.connect(MONGODB_URI);
     console.log("✅ Connected to MongoDB");
 
-    const username = process.env.ADMIN_USERNAME || "admin";
-    const password = process.env.ADMIN_PASSWORD || "ChangeMe!0328";
+    const username = process.env.ADMIN_USERNAME || "w3bd3v3admin";
+    const password = process.env.ADMIN_PASSWORD || "ChangeMe0328";
 
     let user = await User.findOne({ username });
     if (user) {

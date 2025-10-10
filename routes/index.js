@@ -32,7 +32,6 @@ router.get("/service", function (req, res, next) {
   res.render("service");
 });
 
-
 router.get("/track", async (req, res) => {
   try {
     const trackingNumber = req.query.tracking?.trim();
@@ -50,6 +49,24 @@ router.get("/track", async (req, res) => {
     res.render("track", { shipment });
   } catch (error) {
     console.error("TRACK ERROR:", error);
+    res
+      .status(500)
+      .render("index", { error: "Something went wrong. Please try again." });
+  }
+});
+
+// ➕ Add this new route to handle /track/TRK-2025-12345
+router.get("/track/:trackingNumber", async (req, res) => {
+  try {
+    const trackingNumber = req.params.trackingNumber?.trim();
+    const shipment = await Shipment.findOne({ trackingNumber });
+    if (!shipment)
+      return res.render("index", {
+        error: "Invalid tracking number. Please try again.",
+      });
+    res.render("track", { shipment });
+  } catch (error) {
+    console.error("TRACK PARAM ERROR:", error);
     res
       .status(500)
       .render("index", { error: "Something went wrong. Please try again." });

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* Header */
+      .top-bar {
+        background: white;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .top-bar .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #1a3a5c;
+      }
+
+      .logo i {
+        color: #ff5722;
+        font-size: 1.2em;
+      }
+
+      .contact-info {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .contact-info a {
+        color: #666;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+
+      .contact-info a:hover {
+        color: #ff5722;
+      }
+
+      .contact-info i {
+        color: #ff5722;
+      }
+
+      .quote-btn {
+        padding: 12px 30px;
+        border: 2px solid #ff5722;
+        color: #ff5722;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .quote-btn:hover {
+        background: #ff5722;
+        color: white;
+      }
+
+      /* Navigation */
+      nav {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 20px 0;
+        display: block;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #ff5722;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-plane"></i>
+          Xpress
+        </div>
+        <div class="contact-info">
+          <a href="mailto:info@docmed.com">
+            <i class="fas fa-envelope"></i>
+            info@xpresslogistic.com
+          </a>
+          <a href="tel:1601-609-6780">
+            <i class="fas fa-phone"></i>
+            (464)-212-4707
+          </a>
+          <a href="#" class="quote-btn">Get Free Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <span class="mobile-toggle"><i class="fas fa-bars"></i></span>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/service">Services</a></li>
+          <li><a href="/about">About</a></li>
+
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>

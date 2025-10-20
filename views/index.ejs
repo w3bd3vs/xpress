@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xpress - Global Logistics Service</title>
-    
-     <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <link
       rel="stylesheet"
@@ -378,88 +378,6 @@
         line-height: 1.8;
       }
 
-      /* Footer */
-      footer {
-        background: #1a3a5c;
-        color: white;
-        padding: 60px 20px 30px;
-      }
-
-      footer .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-      }
-
-      .footer-section h3 {
-        font-size: 1.3em;
-        margin-bottom: 20px;
-      }
-
-      .footer-section ul {
-        list-style: none;
-      }
-
-      .footer-section ul li {
-        margin-bottom: 12px;
-      }
-
-      .footer-section a {
-        color: #ccc;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-
-      .footer-section a:hover {
-        color: #ff5722;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 15px;
-        margin-top: 20px;
-      }
-
-      .social-links a {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s;
-      }
-
-      .social-links a:hover {
-        transform: scale(1.1);
-      }
-
-      .social-links .facebook {
-        background: #3b5998;
-      }
-      .social-links .twitter {
-        background: #1da1f2;
-      }
-      .social-links .google {
-        background: #db4437;
-      }
-      .social-links .youtube {
-        background: #ff0000;
-      }
-
-      .footer-bottom {
-        text-align: center;
-        padding-top: 30px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        color: #ccc;
-      }
-
       /* Mobile Menu */
       .mobile-toggle {
         display: none;
@@ -543,40 +461,7 @@
     </style>
   </head>
   <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="container">
-        <div class="logo">
-          <i class="fas fa-plane"></i>
-          Xpress
-        </div>
-        <div class="contact-info">
-          <a href="mailto:info@docmed.com">
-            <i class="fas fa-envelope"></i>
-            info@xpresslogistic.com
-          </a>
-          <a href="tel:1601-609-6780">
-            <i class="fas fa-phone"></i>
-            (464)-212-4707
-          </a>
-          <a href="#" class="quote-btn">Get Free Quote</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav>
-      <div class="container">
-        <span class="mobile-toggle"><i class="fas fa-bars"></i></span>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/service">Services</a></li>
-          <li><a href="/about">About</a></li>
-
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+    <%- include('../partials/header') %>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -702,58 +587,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-section">
-            <div class="logo">
-              <i class="fas fa-plane"></i>
-              Xpress
-            </div>
-            <div class="social-links">
-              <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="google"
-                ><i class="fab fa-google-plus-g"></i
-              ></a>
-              <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
-            </div>
-          </div>
-          <div class="footer-section">
-            <h3>Services</h3>
-            <ul>
-              <li><a href="#">Air Transportation</a></li>
-              <li><a href="#">Ocean Freight</a></li>
-              <li><a href="#">Ocean Cargo</a></li>
-              <li><a href="#">Logistics</a></li>
-              <li><a href="#">Warehouse Moving</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Company</h3>
-            <ul>
-              <li><a href="#">About</a></li>
-              <li><a href="#">News</a></li>
-              <li><a href="#">Testimonials</a></li>
-              <li><a href="#">Why Us?</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Industries</h3>
-            <ul>
-              <li><a href="#">Chemicals</a></li>
-              <li><a href="#">Automotive</a></li>
-              <li><a href="#">Consumer Goods</a></li>
-              <li><a href="#">Life Science</a></li>
-              <li><a href="#">Foreign Trade</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Xpress. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+    <%- include('../partials/footer') %>
 
     <script>
       function trackOrder(event) {

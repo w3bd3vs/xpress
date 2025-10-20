@@ -650,37 +650,7 @@
   </head>
   <body>
     <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="container">
-        <a href="/" class="logo">
-          <i class="fas fa-plane"></i>
-          Xpress
-        </a>
-        <div class="contact-info">
-          <a href="mailto:info@xpresslogistic.com">
-            <i class="fas fa-envelope"></i>
-            info@xpresslogistic.com
-          </a>
-          <a href="tel:1601-609-6780">
-            <i class="fas fa-phone"></i>
-            (464)-212-4707
-          </a>
-          <a href="#" class="quote-btn">Get Free Quote</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav>
-      <div class="container">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/service">Services</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact" class="active">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+    <%- include('../partials/header') %>
 
     <!-- Page Header -->
     <div class="page-header">
@@ -967,54 +937,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-section">
-          <div class="logo">
-            <i class="fas fa-plane"></i>
-            Xpress
-          </div>
-          <p style="margin-top: 20px; color: #ccc">
-            Your trusted logistics partner for global shipping solutions.
-          </p>
-          <div class="social-links">
-            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="google"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        <div class="footer-section">
-          <h3>Services</h3>
-          <ul>
-            <li><a href="#">Air Freight</a></li>
-            <li><a href="#">Ocean Freight</a></li>
-            <li><a href="#">Road Freight</a></li>
-            <li><a href="#">Warehousing</a></li>
-            <li><a href="#">Express Delivery</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Company</h3>
-          <ul>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/service">Services</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Contact Info</h3>
-          <ul>
-            <li><i class="fas fa-envelope"></i> info@xpresslogistic.com</li>
-            <li><i class="fas fa-phone"></i> 1464-212 4707</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Xpress. All rights reserved.</p>
-      </div>
-    </footer>
+    <%- include('../partials/footer') %>
 
     <script>
       // FAQ Accordion
